@@ -2,11 +2,11 @@
 
 set sdcc_path="C:\Program Files\SDCC"
 
-set project_name=CH559Blink
+set project_name=CH559UART0
 set xram_size=0x0800
 set xram_loc=0x0600
 set code_size=0xEFFF
-set dfreq_sys=12000000
+set dfreq_sys=48000000
 
 del *.hex
 

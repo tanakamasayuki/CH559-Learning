@@ -1,23 +1,15 @@
 #include <stdio.h>
 #include "ch559.h"
 
-unsigned char UART0Receive()
+int UART0Receive()
 {
-    while (RI == 0)
+    while (!RI)
         ;
     RI = 0;
     return SBUF;
 }
 
-void UART0Send(unsigned char b)
-{
-    SBUF = b;
-    while (TI == 0)
-        ;
-    TI = 1;
-}
-
-int putchar(int c)
+int UART0Send(int c)
 {
     while (!TI)
         ;
@@ -28,10 +20,12 @@ int putchar(int c)
 
 int getchar()
 {
-    while (!RI)
-        ;
-    RI = 0;
-    return SBUF;
+    return UART0Receive();
+}
+
+int putchar(int c)
+{
+    return UART0Send(c);
 }
 
 static inline void delay()
